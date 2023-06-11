@@ -1,0 +1,22 @@
+﻿@model List<RoomJoinRequestModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="display: flex;justify-content: center;align-items: center;margin-top: 150px;">
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li id="join-request-@item.Id" style="display: flex;justify-content: center;align-items: center;flex-direction: column;">
+                @item.UserName want to join your room
+                <br/>
+                <button onclick="approveRoomJoinRequest('@item.Id')">Approve</button>
+                <button onclick="declineRoomJoinRequest('@item.Id')">Decline</button>
+                <span>--------------------------------</span>
+            </li>
+        }
+    </ul>
+</div>
+
+<script src="~/js/joinRequest.js"></script>

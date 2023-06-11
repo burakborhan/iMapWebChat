@@ -1,0 +1,53 @@
+﻿@model iMap.ViewModels.LoginViewModel
+@using iMap.Models;
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="form-center">
+    <img src="..\images\logo2.jpg" width="150px" />
+</div>
+<br />
+
+
+
+<h1 class="form-center">Login</h1>
+
+
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <form asp-action="Login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="userName" class="control-label"></label>
+                <input asp-for="userName" class="form-control" />
+                <span asp-validation-for="userName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" asp-for="RememberMe" />Remember Me
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+
+        </form>
+        <a class="btn btn-link" asp-controller="Home" asp-action="ResetPassword">Forgot Password</a>
+@*        <br />
+        <br />
+        <a class="btn btn-info btn-block" asp-controller="Home" asp-action="FacebookLogin">Login With Facebook</a>
+        <a class="btn btn-info btn-block" asp-controller="Home" asp-action="GoogleLogin">Login With Google</a>*@
+
+    </div>
+
+</div>
+
+
+
+
