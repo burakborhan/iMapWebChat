@@ -176,6 +176,10 @@
               "target": "Package",
               "version": "[1.2021.1, )"
             },
+            "SixLabors.ImageSharp": {
+              "target": "Package",
+              "version": "[3.0.1, )"
+            },
             "System.Device.Location.Portable": {
               "target": "Package",
               "version": "[1.0.0, )"

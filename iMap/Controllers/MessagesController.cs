@@ -115,15 +115,15 @@ namespace iMap.Controllers
         public async Task<ActionResult<Message>> CreatePrivate(MessageViewModel viewModel)
         {
             var user = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
-            // var room = _context.Rooms.FirstOrDefault(r => r.Name == viewModel.Room);
-            // if (room == null)
-            //     return BadRequest();
+            var room = _context.Rooms.FirstOrDefault(r => r.Name == viewModel.Room);
+            if (room == null)
+                return BadRequest();
 
             var msg = new Message()
             {
                 Content = Regex.Replace(viewModel.Content, @"<.*?>", string.Empty),
                 FromUser = user,
-                // ToRoom = room,
+                ToRoom = room,
                 Timestamp = DateTime.Now,
                 ToUserName = viewModel.ToUserName
             };
@@ -132,7 +132,6 @@ namespace iMap.Controllers
             await _context.SaveChangesAsync();
 
             var createdMessage = _mapper.Map<Message, MessageViewModel>(msg);
-            createdMessage.FromUserName = user.UserName;
             return CreatedAtAction(nameof(Get), new { id = msg.Id }, createdMessage);
         }
 

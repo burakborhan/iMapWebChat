@@ -3,173 +3,304 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - iMap</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <script src="https://maps.google.com/maps/api/js?key=AIzaSyCXRHN2Ztn7vXkvM9qOCtW90G5YYubSKHk" type="text/javascript"></script>
     <style type="text/css">
         html {
             height: 100%
         }
+
         body {
             height: 100%;
             margin: 0;
             padding: 0
         }
+
         #map_canvas {
             height: 100%;
             margin: auto;
         }
     </style>
 
+    <style>
+
+        .button-file {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 6px 14px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+            border-radius: 6px;
+            border: none;
+            color: #fff;
+            background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+            background-origin: border-box;
+            box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            width: 460px;
+            cursor: pointer;
+        }
+
+            .button-file ::-webkit-file-upload-button {
+                background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+                color: #fff;
+                border: none;
+                border-radius: 50px;
+                cursor : pointer;
+            }
+
+            .button-file:focus {
+                box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+                outline: 0;
+            }
+    </style>
+    <style>
+
+
+        .onoff {
+            margin-left: auto;
+            /*display: -moz-inline-stack;*/
+            display: inline-block;
+            vertical-align: middle;
+            *vertical-align: auto;
+            zoom: 1;
+            *display: inline;
+            position: relative;
+            cursor: pointer;
+            width: 55px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 14px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+            .onoff label {
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 100%;
+                height: 100%;
+                cursor: pointer;
+                background: #cd3c3c;
+                border-radius: 5px;
+                font-weight: bold;
+                color: #FFF;
+                -webkit-transition: background 0.3s, text-indent 0.3s;
+                -moz-transition: background 0.3s, text-indent 0.3s;
+                -o-transition: background 0.3s, text-indent 0.3s;
+                transition: background 0.3s, text-indent 0.3s;
+                text-indent: 27px;
+                -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4) inset;
+                -moz-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4) inset;
+                box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4) inset;
+            }
+
+                .onoff label:after {
+                    content: 'NO';
+                    display: block;
+                    position: absolute;
+                    top: 0px;
+                    left: 0px;
+                    width: 100%;
+                    font-size: 12px;
+                    color: #591717;
+                    text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.35);
+                    z-index: 1;
+                }
+
+                .onoff label:before {
+                    content: '';
+                    width: 15px;
+                    height: 24px;
+                    border-radius: 3px;
+                    background: #FFF;
+                    position: absolute;
+                    z-index: 2;
+                    top: 3px;
+                    left: 3px;
+                    display: block;
+                    -webkit-transition: left 0.3s;
+                    -moz-transition: left 0.3s;
+                    -o-transition: left 0.3s;
+                    transition: left 0.3s;
+                    -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+                    -moz-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+                    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+                }
+
+            .onoff input:checked + label {
+                background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+                text-indent: 8px;
+            }
+
+                .onoff input:checked + label:after {
+                    content: 'YES';
+                    color: #091707;
+                }
+
+                .onoff input:checked + label:before {
+                    left: 37px;
+                }
+    </style>
+
+    <style>
+
+    </style>
 
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white">
-        <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Member" asp-action="Index">iMap</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="btn btn-light" id="" asp-area="" asp-controller="Member" asp-action="PasswordChange">Change Password</a>
-                    </li>
-                    <li>
-                        <div class="actions">
-                            <a class="btn btn-light" role="button" id="create-room" data-bs-toggle="modal" data-bs-target="#create-room-modal">
-                                Create a Room
-                            </a>
-                            <a role="button" class="ms-3" id="expand-users-list">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users">
-                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                    <circle cx="9" cy="7" r="4"></circle>
-                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                </svg>
-                            </a>
-                            <a role="button" id="expand-sidebar">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
-                                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                                </svg>
-                            </a>
-                        </div>
-                    </li>
-                </ul>
-                <div>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Member" asp-action="Index">iMap</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="btn btn-light" asp-area="" asp-controller="Member" asp-action="LogOut" asp-route-returnUrl="/Home/Login">Log Out</a>
+                            <a class="btn btn-light" id="" asp-area="" asp-controller="Member" asp-action="PasswordChange">Change Password</a>
+                        </li>
+                        <li>
+                            <div class="actions">
+                                <a class="btn btn-light" role="button" id="create-room" data-bs-toggle="modal" data-bs-target="#create-room-modal">
+                                    Create a Room
+                                </a>
+                                <a role="button" class="ms-3" id="expand-users-list">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users">
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="9" cy="7" r="4"></circle>
+                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                    </svg>
+                                </a>
+                                <a role="button" id="expand-sidebar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+                                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                                    </svg>
+                                </a>
+                            </div>
                         </li>
                     </ul>
-                </div>
+                    <div>
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="btn btn-light" asp-area="" asp-controller="Member" asp-action="LogOut" asp-route-returnUrl="/Home/Login">Log Out</a>
+                            </li>
+                        </ul>
+                    </div>
 
+                </div>
             </div>
-        </div>
 
-    </nav>
+        </nav>
 
-</header>
-<div class="modal fade" id="create-room-modal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="createRoomModalLabel">Create Room</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </header>
+    <div class="modal fade" id="create-room-modal" tabindex="-1" aria-labelledby="createRoomModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createRoomModalLabel">Create Room</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form enctype="multipart/form-data" id="roomCustomIconForm" method="post">
+                    <div class="modal-body">
+                        <input type="text" class="form-control" id="name" name="name" maxlength="100" placeholder="Enter room name..." />
+                        <br />
+                        <label>Do you want your room to be private?</label>
+                        <p class="onoff">
+                            <input class="onoff" type="checkbox" id="isPublic" name="isPublic" /><label for="isPublic"></label>
+                        </p><br />
+                        <label>Room Icon</label>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="radio" name="fixImage" value="../../Images/transparentChat.png" for="roomIcon">
+                                <label>
+                                    <img src="~/Images/transparentChat.png" for="fixImage" alt="img">
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="radio" name="fixImage" value="../../Images/weather70.png" for="roomIcon">
+                                <label>
+                                    <img src="~/Images/weather70.png" for="fixImage" alt="img">
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="radio" name="fixImage" value="../../Images/traffic70.png" for="roomIcon">
+                                <label>
+                                    <img src="~/Images/traffic70.png" for="fixImage" alt="img">
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="radio" name="fixImage" value="../../Images/loveChat.png" for="roomIcon">
+                                <label>
+                                    <img src="~/Images/loveChat.png" for="fixImage" alt="img">
+                                </label>
+                            </div>
+                        </div><br />
+                        <label>Custom Room Icon</label>
+                        <input class="button-file" role="button" type="file" id="roomCustomIcon" size="200" name="customImage" />
+                        <input type="hidden" id="roomCustomIconHolder">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-sm btn-primary" id="" data-bs-dismiss="modal" data-bind="click: createRoom">Create</button>
+                    </div>
+                </form>
             </div>
-            <form enctype="multipart/form-data" id="roomCustomIconForm" method="post">
-                <div class="modal-body">
-                    <input type="text" class="form-control" id="name" name="name" maxlength="100" placeholder="Enter room name..."/>
-                    <label>Is room public?</label>
-                    <input type="checkbox" id="isPublic" name="isPublic"/><br/>
-                    <label>Room Icon</label>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <input type="radio" id="chat-image" name="fixImage" value="../../Images/chat.png">
-                            <label>
-                                <img src="~/Images/chat.png" alt="img">
-                            </label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="radio" id="weather-image" name="fixImage" value="../../Images/weather.png">
-                            <label>
-                                <img src="~/Images/weather.png" alt="img">
-                            </label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="radio" id="traffic-image" name="fixImage" value="../../Images/traffic.png">
-                            <label>
-                                <img src="~/Images/traffic.png" alt="img">
-                            </label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="radio" id="love-image" name="fixImage" value="../../Images/love.png">
-                            <label>
-                                <img src="~/Images/love.png" alt="img">
-                            </label>
-                        </div>
-                    </div><br/>
-                    <label>Custom Room Icon</label>
-                    <input type="file" id="roomCustomIcon" name="customImage"/>
-                    <input type="hidden" id="roomCustomIconHolder">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-sm btn-primary" onclick="createRoom()">Create</button>
-                </div>
-            </form>
         </div>
     </div>
-</div>
 
 
-<div>
-    <main role="main" class="pb-3">
-        @RenderBody()
-    </main>
-</div>
+    <div>
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
 
-<script>
-$("#roomCustomIcon").on('change',function(){
-     let formData = new FormData();
-     formData.append("file",this.files[0])
-     $.ajax({
-            url: "/api/Rooms/UploadImage",
-            type: "POST",
-            data: formData,
-            async:false,
-              processData: false,
+    <script>
+        $("#roomCustomIcon").on('change', function () {
+            let formData = new FormData();
+            formData.append("file", this.files[0])
+            $.ajax({
+                url: "/api/Rooms/UploadImage",
+                type: "POST",
+                data: formData,
+                async: false,
+                processData: false,
                 contentType: false,
                 cache: false,
-            enctype: 'multipart/form-data',
-            success: function (response) {
-                document.getElementById("roomCustomIconHolder").value = response;
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-               console.log(textStatus, errorThrown);
-            }
+                enctype: 'multipart/form-data',
+                success: function (response) {
+                    document.getElementById("roomCustomIconHolder").value = response;
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus, errorThrown);
+                }
+            });
         });
-});
-</script>
+    </script>
 
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
-<script src="~/lib/knockout/knockout-latest.min.js"></script>
-<script src="~/lib/microsoft-signalr/signalr.min.js"></script>
-<script src="~/js/chat.js" asp-append-version="true"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-@* <script src="~/js/map.js"></script> *@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/knockout/knockout-latest.min.js"></script>
+    <script src="~/lib/microsoft-signalr/signalr.min.js"></script>
+    <script src="~/js/chat.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    @* <script src="~/js/map.js"></script> *@
 
 </body>
 </html>

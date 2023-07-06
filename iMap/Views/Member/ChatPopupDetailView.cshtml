@@ -3,15 +3,9 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <script>
 $( document ).ready( function() {
-      if(!window.location.hash) {
-                window.location = window.location + '#loaded';
-                window.location.reload();
-            }
-      console.log(window.location)
-          history.pushState(this.href.replace('#loaded', ''), this.href);
-      // window.location=window.location.split("#loaded")[0];
     const connection = new signalR.HubConnectionBuilder()
         .withUrl("/chatHub")
         .configureLogging(signalR.LogLevel.Information)
@@ -36,7 +30,6 @@ $( document ).ready( function() {
     async function WaitForHubConnection() {
         while (true) {
             if (signalRConnected) {
-                location.reload();
                 return;
             } else {
                 await new Promise(resolve => setTimeout(resolve, 200));
@@ -48,9 +41,7 @@ $( document ).ready( function() {
         await WaitForHubConnection();
     });
     joinRoom(@Model.RoomId);
-    if (reloadedPage==false){
-        reloadedPage=true;
-    }
+    // getPrivateMessages('Model.Username');
 });
 </script>
 <div class="alert alert-warning alert-dismissible d-none" id="errorAlert" role="alert">
@@ -83,7 +74,7 @@ $( document ).ready( function() {
                             <div class="content" data-bind="html: content"></div>
                         </div>
                             <div class="dropdown dropstart">
-                                <a class="text-secondary" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bind="visible: isMine() === true">
+                            <a class="text-secondary" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bind="visible: isMine() === true">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
                                 </a>
                                 <ul class="dropdown-menu">

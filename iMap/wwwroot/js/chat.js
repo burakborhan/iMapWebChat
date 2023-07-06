@@ -40,7 +40,6 @@ connection.on("newMessage", function (messageView) {
     if (messageView.isPrivate) {
         let url = window.location.href;
         if (url.toLowerCase().includes("chatpopupdetailview")) {
-            url = url.split("#loaded")[0]
             //eğer private ise ve özel chat alanı açıksa username ve roomid parametrelerini scrap ediyoruz
             let checkUserName = url.split("username=")[1];
             let roomId = null;
@@ -177,7 +176,6 @@ function AppViewModel() {
                 let url = window.location.href;
                 //eğer özel mesaj yollanıyorsa kontrolü yapıyoruz eğer özel mesajsa username ve roomidyi scraplıyoruz urlden
                 if (url.toLowerCase().includes("chatpopupdetailview")) {
-                    url = url.split("#loaded")[0]
                     let checkUserName = url.split("username=")[1];
                     let roomId = null;
                     if (checkUserName.includes("&")){
@@ -194,7 +192,7 @@ function AppViewModel() {
                     fetch('/api/Messages/CreatePrivate', {
                         method: 'POST',
                         headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({room: `checkUserName-${checkUserName}`, content: message, toUserName: checkUserName})
+                        body: JSON.stringify({room: room.name(), content: message, toUserName: checkUserName})
                     });
                     self.sendPrivate(checkUserName, message);
                 }else{
@@ -210,7 +208,6 @@ function AppViewModel() {
             //hiçbir senaryo yoksa diye özel mesaja düşen durumlar için aynı özel mesaj senaryosunu çalıştırıyor
             let url = window.location.href;
             if (url.toLowerCase().includes("chatpopupdetailview")) {
-                url = url.split("#loaded")[0]
                 let checkUserName = url.split("username=")[1];
                 let roomId = null;
                 if (checkUserName.includes("&")){
@@ -226,7 +223,7 @@ function AppViewModel() {
                 fetch('/api/Messages/CreatePrivate', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({room: `checkUserName-${checkUserName}`, content: message, toUserName: checkUserName})
+                    body: JSON.stringify({room: room.name(), content: message, toUserName: checkUserName})
                 });
                 self.sendPrivate(checkUserName, message);
             }
@@ -269,18 +266,16 @@ function AppViewModel() {
             }
         });
     }
-    
+
     self.createRoom = function () {
         //gerekli dataları formdan alıyoruz
-        let checkRoomIcon = document.querySelectorAll('input[name="fixImage"]:checked');
-        console.log(document.querySelectorAll('input[name="fixImage"]:checked'));
-        console.log(checkRoomIcon[0].value)
+        let checkRoomIcon = document.querySelector('input[name="fixImage"]:checked');
         let roomIcon = "";
-        if (checkRoomIcon.length>0){
-            roomIcon = checkRoomIcon[0].value;
+        if (checkRoomIcon!=null){
+            roomIcon = checkRoomIcon.value;
         }
         let roomName = document.getElementById("name").value;
-        let roomCustomIcon = document.getElementById("roomCustomIconHolder").value;
+        let roomCustomIcon = document.getElementById("roomCustomIconHolder").value
         let isPublicCheck = document.getElementById("isPublic").value;
         $(document).ready(function () {
             if (navigator.geolocation) {
@@ -294,10 +289,10 @@ function AppViewModel() {
                         isPublic = false;
                     }
                     //eğer kullanıcı hazır ikonlardan seçmişse aşağıdaki posttan eğer custom seçtiyse diğer posta yolluyoruz
-                    if (roomCustomIcon!=null && roomCustomIcon!=""){
+                    if (roomCustomIcon != null && roomCustomIcon != "") {
                         fetch('/api/Rooms/Create', {
                             method: 'POST',
-                            headers: {'Content-Type': 'application/json'},
+                            headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({
                                 name: roomName,
                                 isPublic: isPublic,
@@ -305,9 +300,10 @@ function AppViewModel() {
                                 longitude: longitude,
                                 image: roomCustomIcon
                             })
-                        }).then((response) => {
-                            if (response.status==400) {
-                                alert(response.message);
+                        }).then(async (response) => {
+                            if (response.status == 400) {
+                                let responseJson = await response.json();
+                                alert(responseJson.Message);
                             };
                         });
                     }else{
@@ -321,13 +317,13 @@ function AppViewModel() {
                                 longitude: longitude,
                                 image: roomIcon
                             })
-                        }).then((response) => {
-                            if (response.status==400) {
-                                alert(response.message);
+                        }).then(async (response) => {
+                            if (response.status == 400) {
+                                let responseJson = await response.json();
+                                alert(responseJson.Message);
                             };
-                        });;   
+                        });   
                     }
-                    $("#create-room-modal").modal('toggle');
                 });
             }
         });
@@ -345,8 +341,8 @@ function AppViewModel() {
         }
         fetch('/api/Rooms/' + roomId, {
             method: 'PUT',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({id: roomId, name: roomName})
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: roomId, name: roomName, isPublic: isPublic })
         });
     }
 
@@ -372,7 +368,6 @@ function AppViewModel() {
         let url = window.location.href;
         // mesaj geçmişini çekerken özel mesaj senaryosundaki scrap işleminin aynısnı yapıyoruz eğer özel mesaj senaryosu varsa özel mesajlar bu senaryoya göre çekiliyor
         if (url.toLowerCase().includes("chatpopupdetailview")) {
-            url = url.split("#loaded")[0]
             let checkUserName = url.split("username=")[1];
             let roomId = null;
             if (checkUserName.includes("&")){
@@ -638,82 +633,3 @@ function privateChat(elem) {
         );
     });
 }
-
-async function createRoom(){
-    //gerekli dataları formdan alıyoruz
-    let checkRoomIcon = document.querySelectorAll('input[name="fixImage"]:checked');
-    let roomIcon = "";
-    if (checkRoomIcon.length>0){
-        roomIcon = checkRoomIcon[0].value;
-    }
-    let roomName = document.getElementById("name").value;
-    let roomCustomIcon = document.getElementById("roomCustomIconHolder").value;
-    let isPublicCheck = document.getElementById("isPublic").checked;
-    $(document).ready(function () {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                let latitude = position.coords.latitude;
-                let longitude = position.coords.longitude;
-                //eğer kullanıcı hazır ikonlardan seçmişse aşağıdaki posttan eğer custom seçtiyse diğer posta yolluyoruz
-                if (roomCustomIcon!=null && roomCustomIcon!=""){
-                    fetch('/api/Rooms/Create', {
-                        method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({
-                            name: roomName,
-                            isPublic: isPublicCheck,
-                            latitude: latitude,
-                            longitude: longitude,
-                            image: roomCustomIcon
-                        })
-                    }).then(async (response) => {
-                        if (response.status==400) {
-                            let responseJson = await response.json();
-                            alert(responseJson.Message);
-                        };
-                    });
-                }else{
-                    fetch('/api/Rooms/Create', {
-                        method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({
-                            name: roomName,
-                            isPublic: isPublicCheck,
-                            latitude: latitude,
-                            longitude: longitude,
-                            image: roomIcon
-                        })
-                    }).then(async (response) => {
-                        if (response.status==400) {
-                            let responseJson = await response.json();
-                            alert(responseJson.Message);
-                        };
-                    });
-                }
-                $("#create-room-modal").modal('toggle');
-            });
-        }
-    });
-}
-
-function setImageValues(){
-    let chatImage = document.getElementById("chat-image");
-    if (chatImage.value==""){
-        document.getElementById("chat-image").value = "../../Images/chat.png";
-    }
-    let loveImage = document.getElementById("love-image");
-    if (loveImage.value==""){
-        document.getElementById("love-image").value = "../../Images/love.png";
-    }
-    let weatherImage = document.getElementById("weather-image");
-    if (weatherImage.value==""){
-        document.getElementById("weather-image").value = "../../Images/weather.png";
-    }
-    let trafficImage = document.getElementById("traffic-image");
-    if (trafficImage.value==""){
-        document.getElementById("traffic-image").value = "../../Images/traffic.png";
-    }
-    document.getElementById("isPublic").value = "on";
-    document.getElementById("isPublic").checked = true;
-}
-

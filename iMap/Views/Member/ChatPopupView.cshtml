@@ -3,6 +3,97 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<style>
+
+
+    .onoff {
+        margin-left: auto;
+        /*display: -moz-inline-stack;*/
+        display: inline-block;
+        vertical-align: middle;
+        *vertical-align: auto;
+        zoom: 1;
+        *display: inline;
+        position: relative;
+        cursor: pointer;
+        width: 55px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+        .onoff label {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            background: #cd3c3c;
+            border-radius: 5px;
+            font-weight: bold;
+            color: #FFF;
+            -webkit-transition: background 0.3s, text-indent 0.3s;
+            -moz-transition: background 0.3s, text-indent 0.3s;
+            -o-transition: background 0.3s, text-indent 0.3s;
+            transition: background 0.3s, text-indent 0.3s;
+            text-indent: 27px;
+            -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4) inset;
+            -moz-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4) inset;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4) inset;
+        }
+
+            .onoff label:after {
+                content: 'NO';
+                display: block;
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 100%;
+                font-size: 12px;
+                color: #591717;
+                text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.35);
+                z-index: 1;
+            }
+
+            .onoff label:before {
+                content: '';
+                width: 15px;
+                height: 24px;
+                border-radius: 3px;
+                background: #FFF;
+                position: absolute;
+                z-index: 2;
+                top: 3px;
+                left: 3px;
+                display: block;
+                -webkit-transition: left 0.3s;
+                -moz-transition: left 0.3s;
+                -o-transition: left 0.3s;
+                transition: left 0.3s;
+                -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+                -moz-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+                box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+            }
+
+        .onoff input:checked + label {
+            background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+            text-indent: 8px;
+        }
+
+            .onoff input:checked + label:after {
+                content: 'YES';
+                color: #091707;
+            }
+
+            .onoff input:checked + label:before {
+                left: 37px;
+            }
+</style>
+
+
 @{
     var currentUserName = User.Identity.Name;
 }
@@ -81,7 +172,7 @@ $( document ).ready( function() {
                             <div class="content" data-bind="html: content"></div>
                         </div>
                             <div class="dropdown dropstart">
-                                <a class="text-secondary" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bind="visible: isMine() === true">
+                            <a class="text-secondary" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bind="visible: isMine() === true">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -147,7 +238,7 @@ $( document ).ready( function() {
                     <div class="user-info">
                         <span class="name" data-bind="text: userName"></span>
                     </div>
-                    <div data-bind="visible: isAdmin(userName)" style="position: absolute;right: 30px;z-index: 1500;"><button onclick="banUser(this,@Model)">X</button></div>
+                    <div data-bind="visible: isAdmin(userName)"><button onclick="banUser(this,@Model)">X</button></div>
                 </div>
             </li>
         </ul>
@@ -173,20 +264,20 @@ $( document ).ready( function() {
                 <label>Room Icon</label>
                 <div class="row">
                     <div class="col-md-3">
-                        <input type="radio" name="roomIcon" value="../../Images/chat.png">
-                        <label><img src="~/Images/chat.png" alt="img"></label>
+                        <input type="radio" name="roomIcon" value="../../Images/transparentChat.png">
+                        <label><img src="~/Images/transparentChat.png" alt="img"></label>
                     </div>
                     <div class="col-md-3">
-                        <input type="radio" name="roomIcon" value="../../Images/weather.png">
-                        <label><img src="~/Images/weather.png" alt="img"></label>
+                        <input type="radio" name="roomIcon" value="../../Images/weather70.png">
+                        <label><img src="~/Images/weather70.png" alt="img"></label>
                     </div>
                     <div class="col-md-3">
-                        <input type="radio" name="roomIcon" value="../../Images/traffic.png">
-                        <label><img src="~/Images/traffic.png" alt="img"></label>
+                        <input type="radio" name="roomIcon" value="../../Images/traffic70.png">
+                        <label><img src="~/Images/traffic70.png" alt="img"></label>
                     </div>
                     <div class="col-md-3">
-                        <input type="radio" name="roomIcon" value="../../Images/love.png">
-                        <label><img src="~/Images/love.png" alt="img"></label>
+                        <input type="radio" name="roomIcon" value="../../Images/loveChat.png">
+                        <label><img src="~/Images/loveChat.png" alt="img"></label>
                     </div>
                 </div>
             </div>
@@ -207,8 +298,12 @@ $( document ).ready( function() {
             </div>
             <div class="modal-body">
                 <input type="text" class="form-control" id="newRoomName" maxlength="100" data-bind="value: $root.joinedRoom()?.name()" />
-                <label>Is room public?</label>
-                <input type="checkbox" id="isRoomPublic"/>
+                <label>Do you want your room to be private?</label>
+                @*<input type="checkbox" id="isRoomPublic"/>*@
+                <p class="onoff">
+                    <input class="onoff" type="checkbox" id="isRoomPublic" name="isRoomPublic" /><label for="isRoomPublic"></label>
+                </p>@*
+                <h12 style="color:red">(Private rooms can not be converted to public room!)</h12>*@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>

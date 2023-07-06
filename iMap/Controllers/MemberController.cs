@@ -81,6 +81,7 @@ namespace iMap.Controllers
             return View(passwordChangeViewModel);
         }
 
+        [Microsoft.AspNetCore.Authorization.Authorize]
         public async void LogOut()
         {
             await signInManager.SignOutAsync();
@@ -149,13 +150,6 @@ namespace iMap.Controllers
 
         public async Task<IActionResult> ChatPopupDetailView(string username,int roomId)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name)
-                .ConfigureAwait(false);
-            var room = await _context.Rooms.Include(r => r.Admin).FirstOrDefaultAsync(x => x.Id == roomId)
-                .ConfigureAwait(false);
-            
-            await _hubContext.Clients.Group(room.Name).SendAsync("removeUser",user);
-            
             var chatPopupDetailViewModel = new ChatPopupDetailViewModel
             {
                 Username = username,

@@ -669,3 +669,4 @@ C:\Users\user\source\repos\iMap\iMap\obj\Debug\net6.0\refint\iMap.dll
 C:\Users\user\source\repos\iMap\iMap\obj\Debug\net6.0\iMap.pdb
 C:\Users\user\source\repos\iMap\iMap\obj\Debug\net6.0\iMap.genruntimeconfig.cache
 C:\Users\user\source\repos\iMap\iMap\obj\Debug\net6.0\ref\iMap.dll
+C:\Users\user\source\repos\iMap\iMap\bin\Debug\net6.0\SixLabors.ImageSharp.dll

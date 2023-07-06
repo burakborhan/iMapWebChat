@@ -122,46 +122,6 @@ namespace iMap.Hubs
             return base.OnConnectedAsync();
         }
 
-        public void Connect()
-        {
-            try
-            {
-                var user = _context.Users.Where(u => u.UserName == IdentityName).FirstOrDefault();
-                var userViewModel = _mapper.Map<AppUser, UserViewModel>(user);
-                userViewModel.Device = GetDevice();
-                userViewModel.CurrentRoom = "";
-
-                if (!_Connections.Any(u => u.UserName == IdentityName))
-                {
-                    _Connections.Add(userViewModel);
-                    _ConnectionsMap.Add(IdentityName, Context.ConnectionId);
-                }
-
-                Clients.Caller.SendAsync("getProfileInfo", userViewModel);
-            }
-            catch (Exception ex)
-            {
-                Clients.Caller.SendAsync("onError", "OnConnected:" + ex.Message);
-            }
-        }
-        public void Disconnect()
-        {
-            try
-            {
-                var userConnections = _Connections.Where(u => u.UserName == IdentityName);
-                var user = userConnections.FirstOrDefault();
-
-                userConnections.ToList().ForEach(x => _Connections.Remove(x));
-
-                Clients.OthersInGroup(user.CurrentRoom).SendAsync("removeUser", user);
-
-                _ConnectionsMap.Remove(user.UserName);
-            }
-            catch (Exception ex)
-            {
-                Clients.Caller.SendAsync("onError", "OnDisconnected: " + ex.Message);
-            }
-        }
         public override Task OnDisconnectedAsync(Exception exception)
         {
             try
@@ -171,8 +131,10 @@ namespace iMap.Hubs
 
                 userConnections.ToList().ForEach(x => _Connections.Remove(x));
 
+                // Tell other users to remove you from their list
                 Clients.OthersInGroup(user.CurrentRoom).SendAsync("removeUser", user);
 
+                // Remove mapping
                 _ConnectionsMap.Remove(user.UserName);
             }
             catch (Exception ex)

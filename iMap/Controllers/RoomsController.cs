@@ -1,5 +1,4 @@
-﻿using System.Text.Json;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using iMap.Data;
 using iMap.Models;
@@ -9,6 +8,7 @@ using iMap.Helper;
 using iMap.Hubs;
 using Microsoft.AspNetCore.SignalR;
 using iMap.ViewModels;
+using System.Text.Json;
 
 namespace iMap.Controllers
 {
@@ -37,30 +37,28 @@ namespace iMap.Controllers
         {
             var rooms = await _context.Rooms
                 .Include(r => r.Admin)
-                .ToListAsync();
+                .ToListAsync(); 
 
             var roomsViewModel = _mapper.Map<IEnumerable<Room>, IEnumerable<RoomViewModel>>(rooms);
 
             return Ok(roomsViewModel);
         }
-
+        
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Room>> Get(int id)
         {
-            var room = await _context.Rooms.Include(r => r.Admin).FirstOrDefaultAsync(x => x.Id == id);
+            var room = await _context.Rooms.Include(r=>r.Admin).FirstOrDefaultAsync(x=>x.Id==id);
             var user = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
             var checkUserIfBanned =
-                await _context.BannedUsers.FirstOrDefaultAsync(x => x.UserId == user.Id && x.RoomId == room.Id)
-                    .ConfigureAwait(false);
-            if (checkUserIfBanned != null)
+                await _context.BannedUsers.FirstOrDefaultAsync(x => x.UserId == user.Id && x.RoomId == room.Id).ConfigureAwait(false);
+            if (checkUserIfBanned!=null)
             {
                 return new Room
                 {
                     Id = -1
                 };
             }
-
             if (room == null)
                 return NotFound();
 
@@ -84,12 +82,22 @@ namespace iMap.Controllers
             if (checkUserHasAlreadyCreatedRoom)
             {
                 return BadRequest(JsonSerializer.Serialize(new ErrorJsonResult
-                    { Status = 400, Message = "User exceeded room create limits!" }));
+                { Status = 400, Message = "User exceeded room create limits!" }));
             }
+
+            //if(viewModel.Name== "" || viewModel.Name.Length==0) 
+            //{
+            //    return BadRequest(JsonSerializer.Serialize(new ErrorJsonResult
+            //    { Status = 400, Message = "Room name can not be empty!" }));
+            //}
 
             if (_context.Rooms.Any(r => r.Name == viewModel.Name))
                 return BadRequest(JsonSerializer.Serialize(new ErrorJsonResult
-                    { Status = 400, Message = "Invalid room name or room already exists" }));
+                { Status = 400, Message = "Invalid room name or room already exists!" }));
+            
+            if(viewModel.Image == "")
+                return BadRequest(JsonSerializer.Serialize(new ErrorJsonResult
+                { Status = 400, Message = "Room icon is necessary!" }));
 
             var room = new Room()
             {
@@ -103,7 +111,7 @@ namespace iMap.Controllers
 
             _context.Rooms.Add(room);
             await _context.SaveChangesAsync();
-
+            
             var createdRoom = _mapper.Map<Room, RoomViewModel>(room);
             await _hubContext.Clients.All.SendAsync("addChatRoom", createdRoom);
 
@@ -114,7 +122,7 @@ namespace iMap.Controllers
         public async Task<string> UploadImage(IFormFile file)
         {
             string path = "";
-            if (file != null)
+            if (file!=null)
             {
                 path = await _uploadHelper.UploadImage(file);
             }
@@ -162,17 +170,16 @@ namespace iMap.Controllers
 
             return Ok();
         }
-
+        
         [HttpPost("BanUser")]
         public async Task BanUser(BannedUserViewModel bannedUserViewModel)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x =>
                 x.UserName.ToLower() == bannedUserViewModel.UserName.ToLower());
-            if (user == null)
+            if (user==null)
             {
                 return;
             }
-
             var bannedUser = new BannedUser
             {
                 UserId = user.Id,
@@ -180,7 +187,7 @@ namespace iMap.Controllers
             };
             await _context.BannedUsers.AddAsync(bannedUser).ConfigureAwait(false);
             await _context.SaveChangesAsync().ConfigureAwait(false);
-            await _hubContext.Clients.All.SendAsync("BanUser", bannedUserViewModel.RoomId, user.UserName);
+            await _hubContext.Clients.All.SendAsync("BanUser",bannedUserViewModel.RoomId,user.UserName);
         }
     }
 }

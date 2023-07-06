@@ -57,12 +57,24 @@
       "PackagePath": "staticwebassets\\Images\\love.png"
     },
     {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\loveChat.png",
+      "PackagePath": "staticwebassets\\Images\\loveChat.png"
+    },
+    {
       "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\marker.png",
       "PackagePath": "staticwebassets\\Images\\marker.png"
     },
     {
       "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\traffic.png",
       "PackagePath": "staticwebassets\\Images\\traffic.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\traffic70.png",
+      "PackagePath": "staticwebassets\\Images\\traffic70.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\transparentChat.png",
+      "PackagePath": "staticwebassets\\Images\\transparentChat.png"
     },
     {
       "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\uploaded-images\\0189d3f0-01e6-461e-9f12-14f756378e32-Untitled.png",
@@ -77,16 +89,48 @@
       "PackagePath": "staticwebassets\\Images\\uploaded-images\\0cc12158-4449-4c48-9b7e-74b4332a11b0-Untitled.png"
     },
     {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\uploaded-images\\0f7275c9-ee8d-4994-a8f3-22e0016627d8-logo2.jpg",
+      "PackagePath": "staticwebassets\\Images\\uploaded-images\\0f7275c9-ee8d-4994-a8f3-22e0016627d8-logo2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\uploaded-images\\1128ee0a-a1b4-4fb9-9a0f-724f2da52e25-hata.png",
+      "PackagePath": "staticwebassets\\Images\\uploaded-images\\1128ee0a-a1b4-4fb9-9a0f-724f2da52e25-hata.png"
+    },
+    {
       "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\uploaded-images\\11c482cd-9ffc-46c0-8a44-1e52464642ad-Untitled.png",
       "PackagePath": "staticwebassets\\Images\\uploaded-images\\11c482cd-9ffc-46c0-8a44-1e52464642ad-Untitled.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\uploaded-images\\20785ee5-8712-4097-8d45-7f48d8860279-loveChat.png",
+      "PackagePath": "staticwebassets\\Images\\uploaded-images\\20785ee5-8712-4097-8d45-7f48d8860279-loveChat.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\uploaded-images\\25286598-bd90-43fc-8cc5-a7bf2b685104-facelogo2.jpg",
+      "PackagePath": "staticwebassets\\Images\\uploaded-images\\25286598-bd90-43fc-8cc5-a7bf2b685104-facelogo2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\uploaded-images\\2bf81b1f-c99e-4a34-98f7-3d64bb716c05-loveChat.png",
+      "PackagePath": "staticwebassets\\Images\\uploaded-images\\2bf81b1f-c99e-4a34-98f7-3d64bb716c05-loveChat.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\uploaded-images\\2d4e984f-a7a7-43c4-a79a-ca0405da6fc6-ic_bubble.jpg",
+      "PackagePath": "staticwebassets\\Images\\uploaded-images\\2d4e984f-a7a7-43c4-a79a-ca0405da6fc6-ic_bubble.jpg"
     },
     {
       "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\uploaded-images\\45c994c9-c566-4b6f-8549-f034d9c1e233-Untitled.png",
       "PackagePath": "staticwebassets\\Images\\uploaded-images\\45c994c9-c566-4b6f-8549-f034d9c1e233-Untitled.png"
     },
     {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\uploaded-images\\4bd0dad7-604a-45a4-a532-d463c8190cee-logo2.jpg",
+      "PackagePath": "staticwebassets\\Images\\uploaded-images\\4bd0dad7-604a-45a4-a532-d463c8190cee-logo2.jpg"
+    },
+    {
       "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\uploaded-images\\60f970e3-33d2-4289-affd-98c646764e78-Untitled.png",
       "PackagePath": "staticwebassets\\Images\\uploaded-images\\60f970e3-33d2-4289-affd-98c646764e78-Untitled.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\uploaded-images\\71894345-2e9f-413b-aabf-806515d0b191-aaaaa.png",
+      "PackagePath": "staticwebassets\\Images\\uploaded-images\\71894345-2e9f-413b-aabf-806515d0b191-aaaaa.png"
     },
     {
       "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\uploaded-images\\73a04020-ee14-48f5-bec3-4edc50645f92-default.png",
@@ -97,8 +141,24 @@
       "PackagePath": "staticwebassets\\Images\\uploaded-images\\73f7826f-26aa-41b1-b4cc-c108bd273ff7-Untitled.png"
     },
     {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\uploaded-images\\a008ab87-ae91-4fa6-b97e-44511172a6e9-ic_bubble.jpg",
+      "PackagePath": "staticwebassets\\Images\\uploaded-images\\a008ab87-ae91-4fa6-b97e-44511172a6e9-ic_bubble.jpg"
+    },
+    {
       "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\uploaded-images\\a6212003-fac8-42d0-bf95-729d4fc243a0-Untitled.png",
       "PackagePath": "staticwebassets\\Images\\uploaded-images\\a6212003-fac8-42d0-bf95-729d4fc243a0-Untitled.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\uploaded-images\\a6bced6a-c0c2-4830-bc37-bb8c00bfd60b-transparentChat.png",
+      "PackagePath": "staticwebassets\\Images\\uploaded-images\\a6bced6a-c0c2-4830-bc37-bb8c00bfd60b-transparentChat.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\uploaded-images\\c56853a2-60f8-4436-8256-6308355a736b-isabel qr.png",
+      "PackagePath": "staticwebassets\\Images\\uploaded-images\\c56853a2-60f8-4436-8256-6308355a736b-isabel qr.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\uploaded-images\\cf04e21e-a04a-429e-bbf4-5fb00d17ba90-aaaaa.png",
+      "PackagePath": "staticwebassets\\Images\\uploaded-images\\cf04e21e-a04a-429e-bbf4-5fb00d17ba90-aaaaa.png"
     },
     {
       "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\uploaded-images\\d4d7bd26-6b7c-449c-9c11-f6862b306d1e-Untitled.png",
@@ -109,12 +169,40 @@
       "PackagePath": "staticwebassets\\Images\\uploaded-images\\d577f757-ab86-439d-9071-869c65b19df5-Untitled.png"
     },
     {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\uploaded-images\\d94477c2-d791-44f2-a94c-569cbc7edc56-safsadf.png",
+      "PackagePath": "staticwebassets\\Images\\uploaded-images\\d94477c2-d791-44f2-a94c-569cbc7edc56-safsadf.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\uploaded-images\\e4898825-1f95-48e1-8609-cd680e8f47da-ben.png",
+      "PackagePath": "staticwebassets\\Images\\uploaded-images\\e4898825-1f95-48e1-8609-cd680e8f47da-ben.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\uploaded-images\\ef674f4a-8614-492d-8cd8-787ccf92a3fd-aaaaa.png",
+      "PackagePath": "staticwebassets\\Images\\uploaded-images\\ef674f4a-8614-492d-8cd8-787ccf92a3fd-aaaaa.png"
+    },
+    {
       "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\uploaded-images\\fda4366c-53b2-44a8-a2f3-0ba78c17cdd3-Untitled.png",
       "PackagePath": "staticwebassets\\Images\\uploaded-images\\fda4366c-53b2-44a8-a2f3-0ba78c17cdd3-Untitled.png"
     },
     {
       "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\weather.png",
       "PackagePath": "staticwebassets\\Images\\weather.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\Images\\weather70.png",
+      "PackagePath": "staticwebassets\\Images\\weather70.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\css\\Banned.css",
+      "PackagePath": "staticwebassets\\css\\Banned.css"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\css\\JoinRequests.css",
+      "PackagePath": "staticwebassets\\css\\JoinRequests.css"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\css\\RoomClosed.css",
+      "PackagePath": "staticwebassets\\css\\RoomClosed.css"
     },
     {
       "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\css\\_auth.css",
@@ -183,6 +271,10 @@
     {
       "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\js\\joinRequest.js",
       "PackagePath": "staticwebassets\\js\\joinRequest.js"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\js\\map.js",
+      "PackagePath": "staticwebassets\\js\\map.js"
     },
     {
       "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\js\\site.js",
@@ -997,6 +1089,10 @@
       "PackagePath": "staticwebassets\\logo2.ico"
     },
     {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\uploads\\202307110601_image.jpg",
+      "PackagePath": "staticwebassets\\uploads\\202307110601_image.jpg"
+    },
+    {
       "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\uploads\\202316070519_ic_bubble.jpg",
       "PackagePath": "staticwebassets\\uploads\\202316070519_ic_bubble.jpg"
     },
@@ -1005,8 +1101,32 @@
       "PackagePath": "staticwebassets\\uploads\\202317260419_ic_bubble.jpg"
     },
     {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\uploads\\202320260605_transparentChat.png",
+      "PackagePath": "staticwebassets\\uploads\\202320260605_transparentChat.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\uploads\\202326260605_weather70.png",
+      "PackagePath": "staticwebassets\\uploads\\202326260605_weather70.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\uploads\\202328250627_traffic70.png",
+      "PackagePath": "staticwebassets\\uploads\\202328250627_traffic70.png"
+    },
+    {
       "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\uploads\\202329250409_logo.jpg",
       "PackagePath": "staticwebassets\\uploads\\202329250409_logo.jpg"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\uploads\\202330250646_hata.png",
+      "PackagePath": "staticwebassets\\uploads\\202330250646_hata.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\uploads\\202335020705_traffic70.png",
+      "PackagePath": "staticwebassets\\uploads\\202335020705_traffic70.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\iMap\\iMap\\wwwroot\\uploads\\202357260601_transparentChat.png",
+      "PackagePath": "staticwebassets\\uploads\\202357260601_transparentChat.png"
     },
     {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.iMap.props",
